@@ -1,25 +1,33 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="authencation">
-    <Login @viewDefault="viewDefault" />
+    <Login
+      @handleChangeForm="handleChangeForm"
+      v-show="handleCheckView('login')" />
+    <Register
+      @handleChangeForm="handleChangeForm"
+      v-show="handleCheckView('register')" />
+    <ForgotPassword
+      @handleChangeForm="handleChangeForm"
+      v-show="handleCheckView('forgot')" />
     <span id="icon-first"></span>
   </div>
 </template>
 
-<script>
+<script setup>
 //import
-import Login from "../views/Login.vue";
+import { ref, onMounted } from "vue";
+import ForgotPassword from "../views/authen/ForgotPassword.vue";
+import Login from "../views/authen/Login.vue";
+import Register from "../views/authen/Register.vue";
 //
-export default {
-  name: "CompAuthen",
-  setup() {
-    return {
-      viewDefault: "login",
-    };
-  },
-  components: {
-    Login,
-  },
+const viewDefault = ref("login");
+
+onMounted(() => {});
+
+const handleCheckView = (view) => viewDefault.value === view;
+const handleChangeForm = (view) => {
+  viewDefault.value = view;
 };
 </script>
 
@@ -32,6 +40,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 #authencation::before {
   content: "";

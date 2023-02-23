@@ -24,7 +24,7 @@ yarn install
 
 ```
 
-yarn serve
+yarn dev
 
 ```
 

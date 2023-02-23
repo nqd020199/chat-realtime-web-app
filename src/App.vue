@@ -4,7 +4,10 @@
 
 <script setup>
 //import
-// import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 // import {
 //   collection,
 //   onSnapshot,
@@ -26,21 +29,13 @@
 //   orderBy("valueSort", "desc"),
 //   limit(5)
 // );
-// //mounted
-// onMounted(async () => {
-//   // onSnapshot(sortAllowDate, (querySnapshot) => {
-//   //   const cloneTodo = [];
-//   //   querySnapshot.forEach((doc) => {
-//   //     cloneTodo.push({
-//   //       id: doc.id,
-//   //       content: doc.data().content,
-//   //       done: doc.data().done,
-//   //       date: doc.data().date,
-//   //     });
-//   //   });
-//   //   todos.value = cloneTodo;
-//   // });
-// });
+//mounted
+onMounted(async () => {
+  const token = JSON.parse(localStorage.getItem("TOKEN"));
+  if (!token?.email) {
+    return router.push("/login");
+  }
+});
 
 //add Todo
 // const newTodoContent = ref("");
